@@ -321,16 +321,16 @@ function TabDashboard() {
       if (all) {
         setStats({
           total: all.length,
-          pending:  all.filter(r=>r.status==='pending').length,
-          approved: all.filter(r=>r.status==='approved').length,
-          in_use:   all.filter(r=>r.status==='in_use').length,
-          returned: all.filter(r=>r.status==='returned').length,
-        });
+          pending: all.filter((r: any) => r.status === 'pending').length,
+          approved: all.filter((r: any) => r.status === 'approved').length,
+          in_use: all.filter((r: any) => r.status === 'in_use').length,
+          returned: all.filter((r: any) => r.status === 'returned').length,
+        })
       }
       if (todayData) setTodayRes(todayData as Reservation[]);
 
       if (vehicles && all) {
-        const counts = vehicles.map(v=>({
+        const counts = vehicles.map((v: any) => ({
           name: v.name, number: v.number,
           count: (all as any[]).filter((r:any)=>r.vehicle_id===v.id && ['approved','in_use','returned'].includes(r.status)).length,
         }));
@@ -1226,7 +1226,7 @@ function TabExport() {
     ]);
 
     const BOM = '\uFEFF';
-    const csv = BOM + [headers, ...rows].map(row => row.map(v => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const csv = BOM + [headers, ...rows].map((row: any) => row.map((v: any) => `"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1248,7 +1248,7 @@ function TabExport() {
     const rows = data.map((r:any) => [r.id, r.vehicles?.name||'', r.vehicles?.number||'', r.date, r.description, r.cost||0, new Date(r.created_at).toLocaleString('ko-KR')]);
 
     const BOM = '\uFEFF';
-    const csv = BOM + [headers, ...rows].map(row => row.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
+    const csv = BOM + [headers, ...rows].map((row: any) => row.map((v: any)=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

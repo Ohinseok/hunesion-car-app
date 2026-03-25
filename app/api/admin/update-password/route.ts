@@ -40,7 +40,7 @@ export async function POST(req: NextRequest) {
   if (action === 'reset') {
     const tempPw = DEFAULT_TEMP_PASSWORD;
 
-    const { error } = await supabaseAdmin.auth.admin.updateUser(target_auth_id, {
+    const { error } = await supabaseAdmin.auth.admin.updateUserById(target_auth_id, {
       password: tempPw,
     });
     if (error) {
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: '새 비밀번호는 6자 이상이어야 합니다.' }, { status: 400 });
     }
 
-    const { error } = await supabaseAdmin.auth.admin.updateUser(target_auth_id, {
+    const { error } = await supabaseAdmin.auth.admin.updateUserById(target_auth_id, {
       password: new_password,
     });
     if (error) {

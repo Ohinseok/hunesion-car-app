@@ -1,5 +1,5 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 
 interface Vehicle {
@@ -11,6 +11,7 @@ interface Vehicle {
 }
 
 export default function ReservationPage() {
+  const empInputRef = useRef<HTMLInputElement>(null);
   const [employeeId, setEmployeeId] = useState('');
   const [userName, setUserName]     = useState('');
   const [department, setDepartment] = useState('');
